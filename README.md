@@ -26,3 +26,15 @@ $ neste generate module http
 $ openssl rand -hex 32
 ```
 Isso vai gerar um código em hexadecimal de 32 caracteres.
+
+> 💡 Para fazer um module poder ser usado por outros modules, é preciso colocar ele no `exports` do decorator `@Module`, por exemplo:
+
+```ts
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService],
+})
+export class DatabaseModule {}
+```
+Aqui o module database permite que o `PrismaService` seja importado por outras partes da aplicação.
+
